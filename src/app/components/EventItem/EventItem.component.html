@@ -1,0 +1,22 @@
+<link rel="stylesheet" href="EventItem.component.css">
+<div class="cardCont">
+
+  <div class="card text-center">
+    <div class="card-header" >
+      <img class="card-img-top" height="200px" width="100%"[src]="myEvent.image">
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">{{myEvent.title}}</h5>
+    </div>
+    <div class="card-footer">
+      <i (click)="changePriority()" *ngIf="myEvent.isPriority ===  false" class="far fa-square check"></i>
+      <i (click)="changePriority()" *ngIf="myEvent.isPriority === true" class="far fa-check-square check"></i>
+      <i (click)="changeIsHidden()" *ngIf="myEvent.isHidden === false" class="fas fa-eye eye"></i>
+      <i (click)="changeIsHidden()" *ngIf="myEvent.isHidden === true" class="fas fa-eye-slash eye"></i>
+    </div>
+    <div class="card-footer text-muted">
+      {{myEvent.date}}
+    </div>
+  </div>
+
+</div>  
