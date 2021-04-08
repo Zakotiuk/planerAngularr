@@ -11,7 +11,7 @@ const routes: Routes = [
   {path:'', redirectTo:'home', pathMatch:'full'},
   {path:'add', component: AddNewEventComponent, pathMatch:'full'},
   {path:'list', component: ListEventsComponent, pathMatch:'full'},
-  {path:'event/id:', component: EventDetailsComponent},
+  {path:'event/:id', component: EventDetailsComponent},
   {path:'**', component: Page404Component}
 ];
 
