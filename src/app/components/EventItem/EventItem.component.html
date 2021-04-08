@@ -14,11 +14,11 @@
       <i (click)="changeIsHidden()" *ngIf="myEvent.isHidden === false" class="fas fa-eye eye"></i>
       <i (click)="changeIsHidden()" *ngIf="myEvent.isHidden === true" class="fas fa-eye-slash eye"></i>
       <i (click)="modal()" data-toggle="modal" data-target="#addNoteModal" class="plus fas fa-plus-square"></i>
-
     </div>
     <div class="card-footer text-muted">
       {{myEvent.date}}
     </div>
+    <button [routerLink]="['/event', myEvent.id]"></button>
   </div>
 
 </div>  

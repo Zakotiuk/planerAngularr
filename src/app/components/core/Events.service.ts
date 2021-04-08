@@ -25,6 +25,10 @@ export class EventsService {
     console.log("Success!!!!!!!");
   }
 
+  getEventById(id:string):EventModel{
+    return this.events.find(t=> t.id == id);
+  }
+
   addNotification(model: NoteModel){
     this.notes.push(new NoteModel(model.description, model.idOfNote));
     this.changeEvents.emit(true);

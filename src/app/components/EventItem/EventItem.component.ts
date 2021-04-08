@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { NotifierService } from 'angular-notifier';
+import { NgxSpinnerService } from 'ngx-spinner';
 import { EventModel } from 'src/app/models/event.model';
 import { NoteModel } from 'src/app/models/note.model';
 import { EventsService } from '../core/Events.service';
@@ -11,7 +13,9 @@ import { EventsService } from '../core/Events.service';
 })
 export class EventItemComponent implements OnInit {
 
-  constructor(private eventsService: EventsService) { }
+  constructor(private eventsService: EventsService,
+    private notifier: NotifierService,
+private spinner: NgxSpinnerService,) { }
   @Input() myEvent: EventModel;
   isModalVisible: boolean = false;
   model = new NoteModel();
@@ -33,9 +37,14 @@ export class EventItemComponent implements OnInit {
   }
 
   onSubmit(form : NgForm){
-    if(this.model.isValid()== true){
-      this.model.idOfNote = this.myEvent.id;
+    this.spinner.show();
+    this.model.idOfNote = this.myEvent.id;
       this.eventsService.addNotification(this.model);
+    if(this.model.isValid()== true){
+      setTimeout(()=>{
+        this.spinner.hide();
+        this.notifier.notify('success', ':)');
+      }, 5000);
       form.resetForm();
     }
   }
