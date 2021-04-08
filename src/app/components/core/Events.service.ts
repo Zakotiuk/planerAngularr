@@ -1,5 +1,6 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { EventModel } from 'src/app/models/event.model';
+import { NoteModel } from 'src/app/models/note.model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,7 +14,21 @@ export class EventsService {
     new EventModel("Study in STEP", "...", "11/05/2021","https://yt3.ggpht.com/ytc/AAUvwniCrLrdm2czf92k8tmlOVNi041tOKc-5MUdNaPzCQ=s900-c-k-c0x00ffffff-no-rj", false),
   ]
 
+  private notes: NoteModel[]=[]
+
   changeEvents = new EventEmitter<boolean>();
+
+  addEvent(model: EventModel)
+  {
+    this.events.push(new EventModel(model.title, model.description, model.date,model.image, model.isPriority));
+    this.changeEvents.emit(true);
+    console.log("Success!!!!!!!");
+  }
+
+  addNotification(model: NoteModel){
+    this.notes.push(new NoteModel(model.description, model.idOfNote));
+    this.changeEvents.emit(true);
+    }
 
   getEvents():EventModel[]{
     return this.events;

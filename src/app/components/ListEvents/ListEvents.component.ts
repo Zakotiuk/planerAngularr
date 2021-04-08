@@ -24,6 +24,7 @@ export class ListEventsComponent implements OnInit {
     this.eventsService.changeEvents.subscribe(data => {
       this.visibleEventsList=this.eventsService.getVisibleEvents();
       this.hiddenEventsList=this.eventsService.getHiddenEvents();
+      this.eventsList = this.eventsService.getEvents();
     })
 
     console.log(this.eventsList)

@@ -8,12 +8,18 @@ export class EventModel {
     public isPriority: boolean;
     public isHidden: boolean = false;
 
-    constructor(title: string, description: string, date: string, image: string, isPriority: boolean) {
+    constructor(title: string = "", description: string = "", date: string = "", image: string = "", isPriority: boolean = false) {
         this.id = uuidv4();
         this.title = title;
         this.date = date;
         this.description = description;
         this.image = image;
         this.isPriority = isPriority;
+    }
+    isValid():Boolean{
+        if(this.title == "" || this.image == ""|| this.description == "" || this.date ==""){
+            return false;
+        }
+        return true;
     }
 }

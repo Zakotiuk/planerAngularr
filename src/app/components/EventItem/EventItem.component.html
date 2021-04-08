@@ -13,6 +13,8 @@
       <i (click)="changePriority()" *ngIf="myEvent.isPriority === true" class="far fa-check-square check"></i>
       <i (click)="changeIsHidden()" *ngIf="myEvent.isHidden === false" class="fas fa-eye eye"></i>
       <i (click)="changeIsHidden()" *ngIf="myEvent.isHidden === true" class="fas fa-eye-slash eye"></i>
+      <i (click)="modal()" data-toggle="modal" data-target="#addNoteModal" class="plus fas fa-plus-square"></i>
+
     </div>
     <div class="card-footer text-muted">
       {{myEvent.date}}
@@ -20,3 +22,29 @@
   </div>
 
 </div>  
+
+
+
+
+<div *ngIf="isModalVisible === true" class="modal fade" id="addNoteModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Event</h5>
+      </div>
+      <div class="modal-body">      
+        <form #addNoteForm="ngForm" (ngSubmit)="onSubmit(addNoteForm)">
+          <h2>Add new note to event:</h2>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Write here text</label>
+            <input [(ngModel)]="model.description" type="text" class="form-control" id="txtTitle" name="txtTitle"  placeholder="Enter text">
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

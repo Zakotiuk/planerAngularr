@@ -1,5 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { EventModel } from 'src/app/models/event.model';
+import { NoteModel } from 'src/app/models/note.model';
 import { EventsService } from '../core/Events.service';
 
 @Component({
@@ -11,8 +13,8 @@ export class EventItemComponent implements OnInit {
 
   constructor(private eventsService: EventsService) { }
   @Input() myEvent: EventModel;
-  // isPriority: boolean = false;
-  // isHidden: boolean = false;
+  isModalVisible: boolean = false;
+  model = new NoteModel();
   ngOnInit() {
   }
 
@@ -26,6 +28,16 @@ export class EventItemComponent implements OnInit {
     this.eventsService.changeIsHidden(this.myEvent.id);
   }
 
-  
+  modal():void{
+    this.isModalVisible=true;
+  }
+
+  onSubmit(form : NgForm){
+    if(this.model.isValid()== true){
+      this.model.idOfNote = this.myEvent.id;
+      this.eventsService.addNotification(this.model);
+      form.resetForm();
+    }
+  }
   
 }
